@@ -14259,7 +14259,7 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -14299,7 +14299,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">globalData</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;global_data.csv&quot;</span><span class="p">)</span>
@@ -14344,7 +14344,7 @@ Seoul Data Shape: (175, 4)
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">seoulData</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -14409,7 +14409,7 @@ Seoul Data Shape: (175, 4)
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">CalculateMovingAverage</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">windowSize</span> <span class="o">=</span> <span class="mi">7</span><span class="p">):</span>
@@ -14432,12 +14432,70 @@ Seoul Data Shape: (175, 4)
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Calculate-Statistical-Measurements">Calculate Statistical Measurements<a class="anchor-link" href="#Calculate-Statistical-Measurements">&#182;</a></h1><ul>
+<li>Standard deviation</li>
+<li>Mean</li>
+<li>Minimum and Maximum values</li>
+<li>Med</li>
+</ul>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistical measurements of temperatures: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;       Global   Seoul&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Std  : </span><span class="si">{:.4f}</span><span class="s2">   </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">dfSeoul</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean : </span><span class="si">{:.4f}</span><span class="s2">   </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">dfSeoul</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Min  : </span><span class="si">{:.4f}</span><span class="s2">   </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">dfSeoul</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Max  : </span><span class="si">{:.4f}</span><span class="s2">   </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">dfSeoul</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">max</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Med  : </span><span class="si">{:.4f}</span><span class="s2">   </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span> <span class="n">dfSeoul</span><span class="o">.</span><span class="n">avg_temp</span><span class="o">.</span><span class="n">median</span><span class="p">()))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>statistical measurements of temperatures: 
+       Global   Seoul
+Std  : 0.4276   0.4475
+Mean : 8.3220   10.6298
+Min  : 7.1914   9.9543
+Max  : 9.5414   11.9514
+Med  : 8.2943   10.5529
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Visualization-Data-using-Matplotlib">Visualization Data using Matplotlib<a class="anchor-link" href="#Visualization-Data-using-Matplotlib">&#182;</a></h1>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -14486,7 +14544,7 @@ Seoul Data Shape: (175, 4)
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2021-02-13T17:14:47.055830</dc:date>
+    <dc:date>2021-02-13T17:21:12.540752</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -14520,7 +14578,7 @@ z
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1">
-      <path clip-path="url(#paf96a61274)" d="M 57.998156 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 57.998156 456.815625 
 L 57.998156 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14613,7 +14671,7 @@ z
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
-      <path clip-path="url(#paf96a61274)" d="M 127.606764 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 127.606764 456.815625 
 L 127.606764 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14672,7 +14730,7 @@ z
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
-      <path clip-path="url(#paf96a61274)" d="M 197.215371 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 197.215371 456.815625 
 L 197.215371 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14689,7 +14747,7 @@ L 197.215371 21.935625
     </g>
     <g id="xtick_4">
      <g id="line2d_7">
-      <path clip-path="url(#paf96a61274)" d="M 266.823979 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 266.823979 456.815625 
 L 266.823979 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14743,7 +14801,7 @@ z
     </g>
     <g id="xtick_5">
      <g id="line2d_9">
-      <path clip-path="url(#paf96a61274)" d="M 336.432586 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 336.432586 456.815625 
 L 336.432586 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14760,7 +14818,7 @@ L 336.432586 21.935625
     </g>
     <g id="xtick_6">
      <g id="line2d_11">
-      <path clip-path="url(#paf96a61274)" d="M 406.041194 456.815625 
+      <path clip-path="url(#pf956ec87ca)" d="M 406.041194 456.815625 
 L 406.041194 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14910,7 +14968,7 @@ z
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_13">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 424.406492 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 424.406492 
 L 445.370057 424.406492 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14959,7 +15017,7 @@ z
     </g>
     <g id="ytick_2">
      <g id="line2d_15">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 366.94349 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 366.94349 
 L 445.370057 366.94349 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14973,7 +15031,7 @@ L 445.370057 366.94349
     </g>
     <g id="ytick_3">
      <g id="line2d_17">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 309.480488 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 309.480488 
 L 445.370057 309.480488 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -14987,7 +15045,7 @@ L 445.370057 309.480488
     </g>
     <g id="ytick_4">
      <g id="line2d_19">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 252.017485 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 252.017485 
 L 445.370057 252.017485 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -15001,7 +15059,7 @@ L 445.370057 252.017485
     </g>
     <g id="ytick_5">
      <g id="line2d_21">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 194.554483 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 194.554483 
 L 445.370057 194.554483 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -15016,7 +15074,7 @@ L 445.370057 194.554483
     </g>
     <g id="ytick_6">
      <g id="line2d_23">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 137.091481 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 137.091481 
 L 445.370057 137.091481 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -15031,7 +15089,7 @@ L 445.370057 137.091481
     </g>
     <g id="ytick_7">
      <g id="line2d_25">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 79.628479 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 79.628479 
 L 445.370057 79.628479 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -15046,7 +15104,7 @@ L 445.370057 79.628479
     </g>
     <g id="ytick_8">
      <g id="line2d_27">
-      <path clip-path="url(#paf96a61274)" d="M 39.551875 22.165477 
+      <path clip-path="url(#pf956ec87ca)" d="M 39.551875 22.165477 
 L 445.370057 22.165477 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -15299,7 +15357,7 @@ z
     </g>
    </g>
    <g id="line2d_29">
-    <path clip-path="url(#paf96a61274)" d="M 57.998156 268.107126 
+    <path clip-path="url(#pf956ec87ca)" d="M 57.998156 268.107126 
 L 59.390328 310.629748 
 L 60.7825 437.048352 
 L 62.174672 287.069917 
@@ -15561,7 +15619,7 @@ L 426.923776 204.323194
 " style="fill:none;stroke:#4c72b0;stroke-linecap:round;stroke-width:1.75;"/>
    </g>
    <g id="line2d_30">
-    <path clip-path="url(#paf96a61274)" d="M 181.901477 225.009874 
+    <path clip-path="url(#pf956ec87ca)" d="M 181.901477 225.009874 
 L 183.29365 182.487253 
 L 184.685822 226.733765 
 L 186.077994 187.084293 
@@ -16175,7 +16233,7 @@ z
    <g id="matplotlib.axis_3">
     <g id="xtick_7">
      <g id="line2d_35">
-      <path clip-path="url(#p77c9857cd0)" d="M 534.691212 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 534.691212 456.815625 
 L 534.691212 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16192,7 +16250,7 @@ L 534.691212 21.935625
     </g>
     <g id="xtick_8">
      <g id="line2d_37">
-      <path clip-path="url(#p77c9857cd0)" d="M 608.182371 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 608.182371 456.815625 
 L 608.182371 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16209,7 +16267,7 @@ L 608.182371 21.935625
     </g>
     <g id="xtick_9">
      <g id="line2d_39">
-      <path clip-path="url(#p77c9857cd0)" d="M 681.673531 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 681.673531 456.815625 
 L 681.673531 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16226,7 +16284,7 @@ L 681.673531 21.935625
     </g>
     <g id="xtick_10">
      <g id="line2d_41">
-      <path clip-path="url(#p77c9857cd0)" d="M 755.16469 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 755.16469 456.815625 
 L 755.16469 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16243,7 +16301,7 @@ L 755.16469 21.935625
     </g>
     <g id="xtick_11">
      <g id="line2d_43">
-      <path clip-path="url(#p77c9857cd0)" d="M 828.655849 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 828.655849 456.815625 
 L 828.655849 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16260,7 +16318,7 @@ L 828.655849 21.935625
     </g>
     <g id="xtick_12">
      <g id="line2d_45">
-      <path clip-path="url(#p77c9857cd0)" d="M 902.147009 456.815625 
+      <path clip-path="url(#pe651efbbc0)" d="M 902.147009 456.815625 
 L 902.147009 21.935625 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16288,7 +16346,7 @@ L 902.147009 21.935625
    <g id="matplotlib.axis_4">
     <g id="ytick_9">
      <g id="line2d_47">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 452.947599 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 452.947599 
 L 932.351875 452.947599 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16302,7 +16360,7 @@ L 932.351875 452.947599
     </g>
     <g id="ytick_10">
      <g id="line2d_49">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 369.891831 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 369.891831 
 L 932.351875 369.891831 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16316,7 +16374,7 @@ L 932.351875 369.891831
     </g>
     <g id="ytick_11">
      <g id="line2d_51">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 286.836064 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 286.836064 
 L 932.351875 286.836064 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16330,7 +16388,7 @@ L 932.351875 286.836064
     </g>
     <g id="ytick_12">
      <g id="line2d_53">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 203.780296 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 203.780296 
 L 932.351875 203.780296 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16345,7 +16403,7 @@ L 932.351875 203.780296
     </g>
     <g id="ytick_13">
      <g id="line2d_55">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 120.724528 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 120.724528 
 L 932.351875 120.724528 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16360,7 +16418,7 @@ L 932.351875 120.724528
     </g>
     <g id="ytick_14">
      <g id="line2d_57">
-      <path clip-path="url(#p77c9857cd0)" d="M 526.533693 37.66876 
+      <path clip-path="url(#pe651efbbc0)" d="M 526.533693 37.66876 
 L 932.351875 37.66876 
 " style="fill:none;stroke:#ffffff;stroke-linecap:round;"/>
      </g>
@@ -16396,7 +16454,7 @@ L 932.351875 37.66876
     </g>
    </g>
    <g id="line2d_59">
-    <path clip-path="url(#p77c9857cd0)" d="M 544.979974 363.366021 
+    <path clip-path="url(#pe651efbbc0)" d="M 544.979974 363.366021 
 L 546.449797 359.806488 
 L 547.919621 374.519224 
 L 549.389444 348.297332 
@@ -16639,7 +16697,7 @@ L 913.905594 241.867298
 " style="fill:none;stroke:#4c72b0;stroke-linecap:round;stroke-width:1.75;"/>
    </g>
    <g id="line2d_60">
-    <path clip-path="url(#p77c9857cd0)" d="M 675.794238 204.017598 
+    <path clip-path="url(#pe651efbbc0)" d="M 675.794238 204.017598 
 L 677.264061 190.965978 
 L 678.733884 186.457236 
 L 680.203707 175.541335 
@@ -16979,10 +17037,10 @@ L 555.533693 48.73875
   </g>
  </g>
  <defs>
-  <clipPath id="paf96a61274">
+  <clipPath id="pf956ec87ca">
    <rect height="434.88" width="405.818182" x="39.551875" y="21.935625"/>
   </clipPath>
-  <clipPath id="p77c9857cd0">
+  <clipPath id="pe651efbbc0">
    <rect height="434.88" width="405.818182" x="526.533693" y="21.935625"/>
   </clipPath>
  </defs>
@@ -16996,14 +17054,55 @@ L 555.533693 48.73875
 
 </div>
 
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>\
+     <span class="o">-</span> <span class="n">dfGlobal</span><span class="o">.</span><span class="n">avg_temp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">dfGlobal</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1850</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seoulData</span><span class="o">.</span><span class="n">avg_temp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seoulData</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>\
+     <span class="o">-</span> <span class="n">seoulData</span><span class="o">.</span><span class="n">avg_temp</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seoulData</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">1850</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>1.1485714285714277
+1.7300000000000004
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Observations">Observations<a class="anchor-link" href="#Observations">&#182;</a></h1><ul>
-<li>Seoul city is hotter than the world about $2^oC$</li>
-<li>Seoul city temperature is increased $2^oC$ during 150 years</li>
-<li>Global and Seoul city temperatures are increasing since 1900 year</li>
-<li>Seoul city has been observed since 1850</li>
+<li>Temperature of Seoul city is mean 8.32 $^\circ$C and standard deviation 0.43 $^\circ$C</li>
+<li>Temperature of the world is mean 10.63 $^\circ$C and standard deviation 0.45 $^\circ$C</li>
+<li>Mean of temperature of Seoul city is greater than the world over 2.30 $^\circ$C</li>
+<li>The world temperature is increased 1.15 $^\circ$C from 1850 to 2000 </li>
+<li>Seoul city temperature is increased 1.73 $^\circ$C from 1850 to 2000</li>
+<li>Temperature increase in Seoul city is 0.48 $^\circ$C higher than the world </li>
 </ul>
 
 </div>
