@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>assessing-solutions</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>simpsons_paradox</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,218 +11775,20 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Assessing-and-Building-Intuition">Assessing and Building Intuition<a class="anchor-link" href="#Assessing-and-Building-Intuition">&#182;</a></h1><p>Once you have your data loaded into dataframes, Pandas makes a quick investigation of the data really easy. Let's explore some helpful methods for assessing and building intuition about a dataset. We can use the cancer data from before to help us.</p>
+<h1 id="Simpson's-Paradox">Simpson's Paradox<a class="anchor-link" href="#Simpson's-Paradox">&#182;</a></h1><p>Use <code>admission_data.csv</code> for this exercise.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;cancer_data.csv&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[1]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>...</th>
-      <th>radius_max</th>
-      <th>texture_max</th>
-      <th>perimeter_max</th>
-      <th>area_max</th>
-      <th>smoothness_max</th>
-      <th>compactness_max</th>
-      <th>concavity_max</th>
-      <th>concave_points_max</th>
-      <th>symmetry_max</th>
-      <th>fractal_dimension_max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>17.99</td>
-      <td>NaN</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
-      <td>0.3001</td>
-      <td>0.14710</td>
-      <td>...</td>
-      <td>25.38</td>
-      <td>NaN</td>
-      <td>184.60</td>
-      <td>2019.0</td>
-      <td>0.1622</td>
-      <td>0.6656</td>
-      <td>0.7119</td>
-      <td>0.2654</td>
-      <td>0.4601</td>
-      <td>0.11890</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
-      <td>0.0869</td>
-      <td>0.07017</td>
-      <td>...</td>
-      <td>24.99</td>
-      <td>23.41</td>
-      <td>158.80</td>
-      <td>1956.0</td>
-      <td>0.1238</td>
-      <td>0.1866</td>
-      <td>0.2416</td>
-      <td>0.1860</td>
-      <td>0.2750</td>
-      <td>0.08902</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
-      <td>0.1974</td>
-      <td>0.12790</td>
-      <td>...</td>
-      <td>23.57</td>
-      <td>25.53</td>
-      <td>152.50</td>
-      <td>1709.0</td>
-      <td>0.1444</td>
-      <td>0.4245</td>
-      <td>0.4504</td>
-      <td>0.2430</td>
-      <td>0.3613</td>
-      <td>0.08758</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>NaN</td>
-      <td>0.28390</td>
-      <td>0.2414</td>
-      <td>0.10520</td>
-      <td>...</td>
-      <td>14.91</td>
-      <td>26.50</td>
-      <td>98.87</td>
-      <td>567.7</td>
-      <td>NaN</td>
-      <td>0.8663</td>
-      <td>0.6869</td>
-      <td>0.2575</td>
-      <td>0.6638</td>
-      <td>0.17300</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
-      <td>0.1980</td>
-      <td>0.10430</td>
-      <td>...</td>
-      <td>22.54</td>
-      <td>16.67</td>
-      <td>152.20</td>
-      <td>1575.0</td>
-      <td>0.1374</td>
-      <td>0.2050</td>
-      <td>0.4000</td>
-      <td>0.1625</td>
-      <td>0.2364</td>
-      <td>0.07678</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 32 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this returns a tuple of the dimensions of the dataframe</span>
-<span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Load and view first few lines of dataset</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">admits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;admission_data.csv&#39;</span><span class="p">)</span>
+<span class="n">admits</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -12003,285 +11805,6 @@ div#notebook {
 
 
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(569, 32)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this returns the datatypes of the columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[3]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>id                          int64
-diagnosis                  object
-radius_mean               float64
-texture_mean              float64
-perimeter_mean            float64
-area_mean                 float64
-smoothness_mean           float64
-compactness_mean          float64
-concavity_mean            float64
-concave_points_mean       float64
-symmetry_mean             float64
-fractal_dimension_mean    float64
-radius_SE                 float64
-texture_SE                float64
-perimeter_SE              float64
-area_SE                   float64
-smoothness_SE             float64
-compactness_SE            float64
-concavity_SE              float64
-concave_points_SE         float64
-symmetry_SE               float64
-fractal_dimension_SE      float64
-radius_max                float64
-texture_max               float64
-perimeter_max             float64
-area_max                  float64
-smoothness_max            float64
-compactness_max           float64
-concavity_max             float64
-concave_points_max        float64
-symmetry_max              float64
-fractal_dimension_max     float64
-dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># although the datatype for diagnosis appears to be object, further</span>
-<span class="c1"># investigation shows it&#39;s a string</span>
-<span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;diagnosis&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>str</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Pandas actually stores <a href="https://en.wikipedia.org/wiki/Pointer_(computer_programming">pointers</a> to strings in dataframes and series, which is why <code>object</code> instead of <code>str</code> appears as the datatype. Understanding this is not essential for data analysis - just know that strings will appear as objects in Pandas.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this displays a concise summary of the dataframe,</span>
-<span class="c1"># including the number of non-null values in each column</span>
-<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
-RangeIndex: 569 entries, 0 to 568
-Data columns (total 32 columns):
-id                        569 non-null int64
-diagnosis                 569 non-null object
-radius_mean               569 non-null float64
-texture_mean              548 non-null float64
-perimeter_mean            569 non-null float64
-area_mean                 569 non-null float64
-smoothness_mean           521 non-null float64
-compactness_mean          569 non-null float64
-concavity_mean            569 non-null float64
-concave_points_mean       569 non-null float64
-symmetry_mean             504 non-null float64
-fractal_dimension_mean    569 non-null float64
-radius_SE                 569 non-null float64
-texture_SE                548 non-null float64
-perimeter_SE              569 non-null float64
-area_SE                   569 non-null float64
-smoothness_SE             521 non-null float64
-compactness_SE            569 non-null float64
-concavity_SE              569 non-null float64
-concave_points_SE         569 non-null float64
-symmetry_SE               504 non-null float64
-fractal_dimension_SE      569 non-null float64
-radius_max                569 non-null float64
-texture_max               548 non-null float64
-perimeter_max             569 non-null float64
-area_max                  569 non-null float64
-smoothness_max            521 non-null float64
-compactness_max           569 non-null float64
-concavity_max             569 non-null float64
-concave_points_max        569 non-null float64
-symmetry_max              504 non-null float64
-fractal_dimension_max     569 non-null float64
-dtypes: float64(30), int64(1), object(1)
-memory usage: 142.3+ KB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this returns the number of unique values in each column</span>
-<span class="n">df</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[6]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>id                        562
-diagnosis                   2
-radius_mean               451
-texture_mean              459
-perimeter_mean            516
-area_mean                 532
-smoothness_mean           434
-compactness_mean          530
-concavity_mean            530
-concave_points_mean       536
-symmetry_mean             394
-fractal_dimension_mean    494
-radius_SE                 535
-texture_SE                499
-perimeter_SE              526
-area_SE                   523
-smoothness_SE             495
-compactness_SE            534
-concavity_SE              526
-concave_points_SE         500
-symmetry_SE               438
-fractal_dimension_SE      539
-radius_max                452
-texture_max               490
-perimeter_max             510
-area_max                  537
-smoothness_max            378
-compactness_max           523
-concavity_max             532
-concave_points_max        485
-symmetry_max              449
-fractal_dimension_max     530
-dtype: int64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this returns useful descriptive statistics for each column of data</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[7]:</div>
-
-
-
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -12301,1108 +11824,50 @@ dtype: int64</pre>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>symmetry_mean</th>
-      <th>...</th>
-      <th>radius_max</th>
-      <th>texture_max</th>
-      <th>perimeter_max</th>
-      <th>area_max</th>
-      <th>smoothness_max</th>
-      <th>compactness_max</th>
-      <th>concavity_max</th>
-      <th>concave_points_max</th>
-      <th>symmetry_max</th>
-      <th>fractal_dimension_max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>5.690000e+02</td>
-      <td>569.000000</td>
-      <td>548.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>521.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>504.000000</td>
-      <td>...</td>
-      <td>569.000000</td>
-      <td>548.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>521.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>569.000000</td>
-      <td>504.000000</td>
-      <td>569.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>3.051467e+07</td>
-      <td>14.113021</td>
-      <td>19.293431</td>
-      <td>91.877909</td>
-      <td>653.288576</td>
-      <td>0.096087</td>
-      <td>0.104536</td>
-      <td>0.088620</td>
-      <td>0.048837</td>
-      <td>0.181091</td>
-      <td>...</td>
-      <td>16.261896</td>
-      <td>25.660803</td>
-      <td>107.211142</td>
-      <td>880.163796</td>
-      <td>0.132090</td>
-      <td>0.254557</td>
-      <td>0.271681</td>
-      <td>0.114377</td>
-      <td>0.288856</td>
-      <td>0.084012</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>1.250417e+08</td>
-      <td>3.506148</td>
-      <td>4.327287</td>
-      <td>24.162787</td>
-      <td>349.476899</td>
-      <td>0.013924</td>
-      <td>0.052674</td>
-      <td>0.079011</td>
-      <td>0.038578</td>
-      <td>0.027899</td>
-      <td>...</td>
-      <td>4.841175</td>
-      <td>6.202916</td>
-      <td>33.621975</td>
-      <td>570.498628</td>
-      <td>0.022685</td>
-      <td>0.158042</td>
-      <td>0.208298</td>
-      <td>0.065760</td>
-      <td>0.062520</td>
-      <td>0.018151</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>8.670000e+03</td>
-      <td>6.981000</td>
-      <td>9.710000</td>
-      <td>43.790000</td>
-      <td>143.500000</td>
-      <td>0.052630</td>
-      <td>0.019380</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.106000</td>
-      <td>...</td>
-      <td>7.930000</td>
-      <td>12.020000</td>
-      <td>50.410000</td>
-      <td>185.200000</td>
-      <td>0.071170</td>
-      <td>0.027290</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.156500</td>
-      <td>0.055040</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>8.691040e+05</td>
-      <td>11.700000</td>
-      <td>16.167500</td>
-      <td>75.170000</td>
-      <td>420.300000</td>
-      <td>0.086050</td>
-      <td>0.065260</td>
-      <td>0.029560</td>
-      <td>0.020360</td>
-      <td>0.161800</td>
-      <td>...</td>
-      <td>13.010000</td>
-      <td>21.017500</td>
-      <td>84.110000</td>
-      <td>515.300000</td>
-      <td>0.116600</td>
-      <td>0.146000</td>
-      <td>0.112500</td>
-      <td>0.064020</td>
-      <td>0.247650</td>
-      <td>0.071270</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>9.060240e+05</td>
-      <td>13.370000</td>
-      <td>18.785000</td>
-      <td>86.340000</td>
-      <td>551.100000</td>
-      <td>0.095780</td>
-      <td>0.094530</td>
-      <td>0.061550</td>
-      <td>0.033700</td>
-      <td>0.178950</td>
-      <td>...</td>
-      <td>14.970000</td>
-      <td>25.370000</td>
-      <td>97.650000</td>
-      <td>686.500000</td>
-      <td>0.131200</td>
-      <td>0.211900</td>
-      <td>0.226700</td>
-      <td>0.100100</td>
-      <td>0.280650</td>
-      <td>0.080040</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>8.910251e+06</td>
-      <td>15.780000</td>
-      <td>21.825000</td>
-      <td>103.800000</td>
-      <td>782.700000</td>
-      <td>0.104800</td>
-      <td>0.130500</td>
-      <td>0.131900</td>
-      <td>0.074040</td>
-      <td>0.195750</td>
-      <td>...</td>
-      <td>18.760000</td>
-      <td>29.675000</td>
-      <td>125.100000</td>
-      <td>1070.000000</td>
-      <td>0.145000</td>
-      <td>0.339900</td>
-      <td>0.385300</td>
-      <td>0.162500</td>
-      <td>0.317525</td>
-      <td>0.092110</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>9.113205e+08</td>
-      <td>28.110000</td>
-      <td>39.280000</td>
-      <td>188.500000</td>
-      <td>2501.000000</td>
-      <td>0.163400</td>
-      <td>0.345400</td>
-      <td>0.426800</td>
-      <td>0.201200</td>
-      <td>0.304000</td>
-      <td>...</td>
-      <td>36.040000</td>
-      <td>49.540000</td>
-      <td>251.200000</td>
-      <td>4254.000000</td>
-      <td>0.222600</td>
-      <td>1.058000</td>
-      <td>1.252000</td>
-      <td>0.291000</td>
-      <td>0.663800</td>
-      <td>0.207500</td>
-    </tr>
-  </tbody>
-</table>
-<p>8 rows × 31 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># this returns the first few lines in our dataframe</span>
-<span class="c1"># by default, it returns the first five</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>...</th>
-      <th>radius_max</th>
-      <th>texture_max</th>
-      <th>perimeter_max</th>
-      <th>area_max</th>
-      <th>smoothness_max</th>
-      <th>compactness_max</th>
-      <th>concavity_max</th>
-      <th>concave_points_max</th>
-      <th>symmetry_max</th>
-      <th>fractal_dimension_max</th>
+      <th>student_id</th>
+      <th>gender</th>
+      <th>major</th>
+      <th>admitted</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>17.99</td>
-      <td>NaN</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
-      <td>0.3001</td>
-      <td>0.14710</td>
-      <td>...</td>
-      <td>25.38</td>
-      <td>NaN</td>
-      <td>184.60</td>
-      <td>2019.0</td>
-      <td>0.1622</td>
-      <td>0.6656</td>
-      <td>0.7119</td>
-      <td>0.2654</td>
-      <td>0.4601</td>
-      <td>0.11890</td>
+      <td>35377</td>
+      <td>female</td>
+      <td>Chemistry</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
-      <td>0.0869</td>
-      <td>0.07017</td>
-      <td>...</td>
-      <td>24.99</td>
-      <td>23.41</td>
-      <td>158.80</td>
-      <td>1956.0</td>
-      <td>0.1238</td>
-      <td>0.1866</td>
-      <td>0.2416</td>
-      <td>0.1860</td>
-      <td>0.2750</td>
-      <td>0.08902</td>
+      <td>56105</td>
+      <td>male</td>
+      <td>Physics</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
-      <td>0.1974</td>
-      <td>0.12790</td>
-      <td>...</td>
-      <td>23.57</td>
-      <td>25.53</td>
-      <td>152.50</td>
-      <td>1709.0</td>
-      <td>0.1444</td>
-      <td>0.4245</td>
-      <td>0.4504</td>
-      <td>0.2430</td>
-      <td>0.3613</td>
-      <td>0.08758</td>
+      <td>31441</td>
+      <td>female</td>
+      <td>Chemistry</td>
+      <td>False</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>NaN</td>
-      <td>0.28390</td>
-      <td>0.2414</td>
-      <td>0.10520</td>
-      <td>...</td>
-      <td>14.91</td>
-      <td>26.50</td>
-      <td>98.87</td>
-      <td>567.7</td>
-      <td>NaN</td>
-      <td>0.8663</td>
-      <td>0.6869</td>
-      <td>0.2575</td>
-      <td>0.6638</td>
-      <td>0.17300</td>
+      <td>51765</td>
+      <td>male</td>
+      <td>Physics</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
-      <td>0.1980</td>
-      <td>0.10430</td>
-      <td>...</td>
-      <td>22.54</td>
-      <td>16.67</td>
-      <td>152.20</td>
-      <td>1575.0</td>
-      <td>0.1374</td>
-      <td>0.2050</td>
-      <td>0.4000</td>
-      <td>0.1625</td>
-      <td>0.2364</td>
-      <td>0.07678</td>
+      <td>53714</td>
+      <td>female</td>
+      <td>Physics</td>
+      <td>True</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 32 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># although, you can specify however many rows you&#39;d like returned</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[9]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>...</th>
-      <th>radius_max</th>
-      <th>texture_max</th>
-      <th>perimeter_max</th>
-      <th>area_max</th>
-      <th>smoothness_max</th>
-      <th>compactness_max</th>
-      <th>concavity_max</th>
-      <th>concave_points_max</th>
-      <th>symmetry_max</th>
-      <th>fractal_dimension_max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>17.99</td>
-      <td>NaN</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
-      <td>0.30010</td>
-      <td>0.14710</td>
-      <td>...</td>
-      <td>25.38</td>
-      <td>NaN</td>
-      <td>184.60</td>
-      <td>2019.0</td>
-      <td>0.1622</td>
-      <td>0.6656</td>
-      <td>0.7119</td>
-      <td>0.26540</td>
-      <td>0.4601</td>
-      <td>0.11890</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
-      <td>0.08690</td>
-      <td>0.07017</td>
-      <td>...</td>
-      <td>24.99</td>
-      <td>23.41</td>
-      <td>158.80</td>
-      <td>1956.0</td>
-      <td>0.1238</td>
-      <td>0.1866</td>
-      <td>0.2416</td>
-      <td>0.18600</td>
-      <td>0.2750</td>
-      <td>0.08902</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
-      <td>0.19740</td>
-      <td>0.12790</td>
-      <td>...</td>
-      <td>23.57</td>
-      <td>25.53</td>
-      <td>152.50</td>
-      <td>1709.0</td>
-      <td>0.1444</td>
-      <td>0.4245</td>
-      <td>0.4504</td>
-      <td>0.24300</td>
-      <td>0.3613</td>
-      <td>0.08758</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>NaN</td>
-      <td>0.28390</td>
-      <td>0.24140</td>
-      <td>0.10520</td>
-      <td>...</td>
-      <td>14.91</td>
-      <td>26.50</td>
-      <td>98.87</td>
-      <td>567.7</td>
-      <td>NaN</td>
-      <td>0.8663</td>
-      <td>0.6869</td>
-      <td>0.25750</td>
-      <td>0.6638</td>
-      <td>0.17300</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
-      <td>0.19800</td>
-      <td>0.10430</td>
-      <td>...</td>
-      <td>22.54</td>
-      <td>16.67</td>
-      <td>152.20</td>
-      <td>1575.0</td>
-      <td>0.1374</td>
-      <td>0.2050</td>
-      <td>0.4000</td>
-      <td>0.16250</td>
-      <td>0.2364</td>
-      <td>0.07678</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>843786</td>
-      <td>M</td>
-      <td>12.45</td>
-      <td>15.70</td>
-      <td>82.57</td>
-      <td>477.1</td>
-      <td>0.12780</td>
-      <td>0.17000</td>
-      <td>0.15780</td>
-      <td>0.08089</td>
-      <td>...</td>
-      <td>15.47</td>
-      <td>23.75</td>
-      <td>103.40</td>
-      <td>741.6</td>
-      <td>0.1791</td>
-      <td>0.5249</td>
-      <td>0.5355</td>
-      <td>0.17410</td>
-      <td>0.3985</td>
-      <td>0.12440</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>844359</td>
-      <td>M</td>
-      <td>18.25</td>
-      <td>19.98</td>
-      <td>119.60</td>
-      <td>1040.0</td>
-      <td>0.09463</td>
-      <td>0.10900</td>
-      <td>0.11270</td>
-      <td>0.07400</td>
-      <td>...</td>
-      <td>22.88</td>
-      <td>27.66</td>
-      <td>153.20</td>
-      <td>1606.0</td>
-      <td>0.1442</td>
-      <td>0.2576</td>
-      <td>0.3784</td>
-      <td>0.19320</td>
-      <td>NaN</td>
-      <td>0.08368</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>84458202</td>
-      <td>M</td>
-      <td>13.71</td>
-      <td>20.83</td>
-      <td>90.20</td>
-      <td>577.9</td>
-      <td>0.11890</td>
-      <td>0.16450</td>
-      <td>0.09366</td>
-      <td>0.05985</td>
-      <td>...</td>
-      <td>17.06</td>
-      <td>28.14</td>
-      <td>110.60</td>
-      <td>897.0</td>
-      <td>0.1654</td>
-      <td>0.3682</td>
-      <td>0.2678</td>
-      <td>0.15560</td>
-      <td>0.3196</td>
-      <td>0.11510</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>844981</td>
-      <td>M</td>
-      <td>13.00</td>
-      <td>21.82</td>
-      <td>87.50</td>
-      <td>519.8</td>
-      <td>0.12730</td>
-      <td>0.19320</td>
-      <td>0.18590</td>
-      <td>0.09353</td>
-      <td>...</td>
-      <td>15.49</td>
-      <td>30.73</td>
-      <td>106.20</td>
-      <td>739.3</td>
-      <td>0.1703</td>
-      <td>0.5401</td>
-      <td>0.5390</td>
-      <td>0.20600</td>
-      <td>0.4378</td>
-      <td>0.10720</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>84501001</td>
-      <td>M</td>
-      <td>12.46</td>
-      <td>24.04</td>
-      <td>83.97</td>
-      <td>475.9</td>
-      <td>0.11860</td>
-      <td>0.23960</td>
-      <td>0.22730</td>
-      <td>0.08543</td>
-      <td>...</td>
-      <td>15.09</td>
-      <td>40.68</td>
-      <td>97.65</td>
-      <td>711.4</td>
-      <td>0.1853</td>
-      <td>1.0580</td>
-      <td>1.1050</td>
-      <td>0.22100</td>
-      <td>0.4366</td>
-      <td>0.20750</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>845636</td>
-      <td>M</td>
-      <td>16.02</td>
-      <td>23.24</td>
-      <td>102.70</td>
-      <td>797.8</td>
-      <td>0.08206</td>
-      <td>0.06669</td>
-      <td>0.03299</td>
-      <td>0.03323</td>
-      <td>...</td>
-      <td>19.19</td>
-      <td>33.88</td>
-      <td>123.80</td>
-      <td>1150.0</td>
-      <td>0.1181</td>
-      <td>0.1551</td>
-      <td>0.1459</td>
-      <td>0.09975</td>
-      <td>0.2948</td>
-      <td>0.08452</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>84610002</td>
-      <td>M</td>
-      <td>15.78</td>
-      <td>17.89</td>
-      <td>103.60</td>
-      <td>781.0</td>
-      <td>0.09710</td>
-      <td>0.12920</td>
-      <td>0.09954</td>
-      <td>0.06606</td>
-      <td>...</td>
-      <td>20.42</td>
-      <td>27.28</td>
-      <td>136.50</td>
-      <td>1299.0</td>
-      <td>0.1396</td>
-      <td>0.5609</td>
-      <td>0.3965</td>
-      <td>0.18100</td>
-      <td>0.3792</td>
-      <td>0.10480</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>846226</td>
-      <td>M</td>
-      <td>19.17</td>
-      <td>24.80</td>
-      <td>132.40</td>
-      <td>1123.0</td>
-      <td>0.09740</td>
-      <td>0.24580</td>
-      <td>0.20650</td>
-      <td>0.11180</td>
-      <td>...</td>
-      <td>20.96</td>
-      <td>29.94</td>
-      <td>151.70</td>
-      <td>1332.0</td>
-      <td>0.1037</td>
-      <td>0.3903</td>
-      <td>0.3639</td>
-      <td>0.17670</td>
-      <td>0.3176</td>
-      <td>0.10230</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>846381</td>
-      <td>M</td>
-      <td>15.85</td>
-      <td>NaN</td>
-      <td>103.70</td>
-      <td>782.7</td>
-      <td>0.08401</td>
-      <td>0.10020</td>
-      <td>0.09938</td>
-      <td>0.05364</td>
-      <td>...</td>
-      <td>16.84</td>
-      <td>NaN</td>
-      <td>112.00</td>
-      <td>876.5</td>
-      <td>0.1131</td>
-      <td>0.1924</td>
-      <td>0.2322</td>
-      <td>0.11190</td>
-      <td>0.2809</td>
-      <td>0.06287</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>84667401</td>
-      <td>M</td>
-      <td>13.73</td>
-      <td>22.61</td>
-      <td>93.60</td>
-      <td>578.3</td>
-      <td>0.11310</td>
-      <td>0.22930</td>
-      <td>0.21280</td>
-      <td>0.08025</td>
-      <td>...</td>
-      <td>15.03</td>
-      <td>32.01</td>
-      <td>108.80</td>
-      <td>697.7</td>
-      <td>0.1651</td>
-      <td>0.7725</td>
-      <td>0.6943</td>
-      <td>0.22080</td>
-      <td>0.3596</td>
-      <td>0.14310</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>84799002</td>
-      <td>M</td>
-      <td>14.54</td>
-      <td>27.54</td>
-      <td>96.73</td>
-      <td>658.8</td>
-      <td>0.11390</td>
-      <td>0.15950</td>
-      <td>0.16390</td>
-      <td>0.07364</td>
-      <td>...</td>
-      <td>17.46</td>
-      <td>37.13</td>
-      <td>124.10</td>
-      <td>943.2</td>
-      <td>0.1678</td>
-      <td>0.6577</td>
-      <td>0.7026</td>
-      <td>0.17120</td>
-      <td>NaN</td>
-      <td>0.13410</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>848406</td>
-      <td>M</td>
-      <td>14.68</td>
-      <td>20.13</td>
-      <td>94.74</td>
-      <td>684.5</td>
-      <td>0.09867</td>
-      <td>0.07200</td>
-      <td>0.07395</td>
-      <td>0.05259</td>
-      <td>...</td>
-      <td>19.07</td>
-      <td>30.88</td>
-      <td>123.40</td>
-      <td>1138.0</td>
-      <td>0.1464</td>
-      <td>0.1871</td>
-      <td>0.2914</td>
-      <td>0.16090</td>
-      <td>0.3029</td>
-      <td>0.08216</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>84862001</td>
-      <td>M</td>
-      <td>16.13</td>
-      <td>NaN</td>
-      <td>108.10</td>
-      <td>798.8</td>
-      <td>0.11700</td>
-      <td>0.20220</td>
-      <td>0.17220</td>
-      <td>0.10280</td>
-      <td>...</td>
-      <td>20.96</td>
-      <td>NaN</td>
-      <td>136.80</td>
-      <td>1315.0</td>
-      <td>0.1789</td>
-      <td>0.4233</td>
-      <td>0.4784</td>
-      <td>0.20730</td>
-      <td>0.3706</td>
-      <td>0.11420</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>849014</td>
-      <td>M</td>
-      <td>19.81</td>
-      <td>22.15</td>
-      <td>130.00</td>
-      <td>1260.0</td>
-      <td>0.09831</td>
-      <td>0.10270</td>
-      <td>0.14790</td>
-      <td>0.09498</td>
-      <td>...</td>
-      <td>27.32</td>
-      <td>30.88</td>
-      <td>186.80</td>
-      <td>2398.0</td>
-      <td>0.1512</td>
-      <td>0.3150</td>
-      <td>0.5372</td>
-      <td>0.23880</td>
-      <td>0.2768</td>
-      <td>0.07615</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>8510426</td>
-      <td>B</td>
-      <td>13.54</td>
-      <td>14.36</td>
-      <td>87.46</td>
-      <td>566.3</td>
-      <td>0.09779</td>
-      <td>0.08129</td>
-      <td>0.06664</td>
-      <td>0.04781</td>
-      <td>...</td>
-      <td>15.11</td>
-      <td>19.26</td>
-      <td>99.70</td>
-      <td>711.2</td>
-      <td>0.1440</td>
-      <td>0.1773</td>
-      <td>0.2390</td>
-      <td>0.12880</td>
-      <td>0.2977</td>
-      <td>0.07259</td>
-    </tr>
-  </tbody>
-</table>
-<p>20 rows × 32 columns</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># same thing applies to `.tail()` which returns the last few rows</span>
-<span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[10]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>...</th>
-      <th>radius_max</th>
-      <th>texture_max</th>
-      <th>perimeter_max</th>
-      <th>area_max</th>
-      <th>smoothness_max</th>
-      <th>compactness_max</th>
-      <th>concavity_max</th>
-      <th>concave_points_max</th>
-      <th>symmetry_max</th>
-      <th>fractal_dimension_max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>567</th>
-      <td>927241</td>
-      <td>M</td>
-      <td>20.60</td>
-      <td>29.33</td>
-      <td>140.10</td>
-      <td>1265.0</td>
-      <td>0.11780</td>
-      <td>0.27700</td>
-      <td>0.3514</td>
-      <td>0.152</td>
-      <td>...</td>
-      <td>25.740</td>
-      <td>39.42</td>
-      <td>184.60</td>
-      <td>1821.0</td>
-      <td>0.16500</td>
-      <td>0.86810</td>
-      <td>0.9387</td>
-      <td>0.265</td>
-      <td>0.4087</td>
-      <td>0.12400</td>
-    </tr>
-    <tr>
-      <th>568</th>
-      <td>92751</td>
-      <td>B</td>
-      <td>7.76</td>
-      <td>24.54</td>
-      <td>47.92</td>
-      <td>181.0</td>
-      <td>0.05263</td>
-      <td>0.04362</td>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>...</td>
-      <td>9.456</td>
-      <td>30.37</td>
-      <td>59.16</td>
-      <td>268.6</td>
-      <td>0.08996</td>
-      <td>0.06444</td>
-      <td>0.0000</td>
-      <td>0.000</td>
-      <td>0.2871</td>
-      <td>0.07039</td>
-    </tr>
-  </tbody>
-</table>
-<p>2 rows × 32 columns</p>
 </div>
 </div>
 
@@ -13416,81 +11881,7 @@ dtype: int64</pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indexing-and-Selecting-Data-in-Pandas">Indexing and Selecting Data in Pandas<a class="anchor-link" href="#Indexing-and-Selecting-Data-in-Pandas">&#182;</a></h2><p>Let's separate this dataframe into three new dataframes - one for each metric (mean, standard error, and maximum). To get the data for each dataframe, we need to select the <code>id</code> and <code>diagnosis</code> columns, as well as the ten columns for that metric.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># View the index number and label for each column</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>0 id
-1 diagnosis
-2 radius_mean
-3 texture_mean
-4 perimeter_mean
-5 area_mean
-6 smoothness_mean
-7 compactness_mean
-8 concavity_mean
-9 concave_points_mean
-10 symmetry_mean
-11 fractal_dimension_mean
-12 radius_SE
-13 texture_SE
-14 perimeter_SE
-15 area_SE
-16 smoothness_SE
-17 compactness_SE
-18 concavity_SE
-19 concave_points_SE
-20 symmetry_SE
-21 fractal_dimension_SE
-22 radius_max
-23 texture_max
-24 perimeter_max
-25 area_max
-26 smoothness_max
-27 compactness_max
-28 concavity_max
-29 concave_points_max
-30 symmetry_max
-31 fractal_dimension_max
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can select data using <code>loc</code> and <code>iloc</code>, which you can read more about <a href="https://pandas.pydata.org/pandas-docs/stable/indexing.html">here</a>. <code>loc</code> uses labels of rows or columns to select data, while <code>iloc</code> uses the index numbers. We'll use these to index the dataframe below.</p>
-
+<h3 id="Proportion-and-admission-rate-for-each-gender">Proportion and admission rate for each gender<a class="anchor-link" href="#Proportion-and-admission-rate-for-each-gender">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -13499,9 +11890,8 @@ dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># select all the columns from &#39;id&#39; to the last mean column</span>
-<span class="n">df_means</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;fractal_dimension_mean&#39;</span><span class="p">]</span>
-<span class="n">df_means</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">]))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">admits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -13514,124 +11904,14 @@ dtype: int64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[12]:</div>
+<div class="prompt"></div>
 
 
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>symmetry_mean</th>
-      <th>fractal_dimension_mean</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>17.99</td>
-      <td>NaN</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
-      <td>0.3001</td>
-      <td>0.14710</td>
-      <td>0.2419</td>
-      <td>0.07871</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
-      <td>0.0869</td>
-      <td>0.07017</td>
-      <td>0.1812</td>
-      <td>0.05667</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
-      <td>0.1974</td>
-      <td>0.12790</td>
-      <td>0.2069</td>
-      <td>0.05999</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>NaN</td>
-      <td>0.28390</td>
-      <td>0.2414</td>
-      <td>0.10520</td>
-      <td>0.2597</td>
-      <td>0.09744</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
-      <td>0.1980</td>
-      <td>0.10430</td>
-      <td>0.1809</td>
-      <td>0.05883</td>
-    </tr>
-  </tbody>
-</table>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>257
+500
+</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -13643,9 +11923,8 @@ dtype: int64</pre>
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># repeat the step above using index numbers</span>
-<span class="n">df_means</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,:</span><span class="mi">11</span><span class="p">]</span>
-<span class="n">df_means</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Proportion of students that are female</span>
+<span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">]))</span><span class="o">/</span><span class="n">admits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -13662,112 +11941,9 @@ dtype: int64</pre>
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
 
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_mean</th>
-      <th>texture_mean</th>
-      <th>perimeter_mean</th>
-      <th>area_mean</th>
-      <th>smoothness_mean</th>
-      <th>compactness_mean</th>
-      <th>concavity_mean</th>
-      <th>concave_points_mean</th>
-      <th>symmetry_mean</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>17.99</td>
-      <td>NaN</td>
-      <td>122.80</td>
-      <td>1001.0</td>
-      <td>0.11840</td>
-      <td>0.27760</td>
-      <td>0.3001</td>
-      <td>0.14710</td>
-      <td>0.2419</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>20.57</td>
-      <td>17.77</td>
-      <td>132.90</td>
-      <td>1326.0</td>
-      <td>0.08474</td>
-      <td>0.07864</td>
-      <td>0.0869</td>
-      <td>0.07017</td>
-      <td>0.1812</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>19.69</td>
-      <td>21.25</td>
-      <td>130.00</td>
-      <td>1203.0</td>
-      <td>0.10960</td>
-      <td>0.15990</td>
-      <td>0.1974</td>
-      <td>0.12790</td>
-      <td>0.2069</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>11.42</td>
-      <td>20.38</td>
-      <td>77.58</td>
-      <td>386.1</td>
-      <td>NaN</td>
-      <td>0.28390</td>
-      <td>0.2414</td>
-      <td>0.10520</td>
-      <td>0.2597</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>20.29</td>
-      <td>14.34</td>
-      <td>135.10</td>
-      <td>1297.0</td>
-      <td>0.10030</td>
-      <td>0.13280</td>
-      <td>0.1980</td>
-      <td>0.10430</td>
-      <td>0.1809</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.514</pre>
 </div>
 
 </div>
@@ -13775,53 +11951,48 @@ dtype: int64</pre>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's save the dataframe of means for later.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_means</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;cancer_data_means.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Proportion of students that are male</span>
+<span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">]))</span><span class="o">/</span><span class="n">admits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.486</pre>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+
 </div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Selecting-Multiple-Ranges-in-Pandas">Selecting Multiple Ranges in Pandas<a class="anchor-link" href="#Selecting-Multiple-Ranges-in-Pandas">&#182;</a></h3><p>Selecting the columns for the mean dataframe was pretty straightforward - the columns we needed to select were all together (<code>id</code>, <code>diagnosis</code>, and the mean columns). Now we run into a little issue when we try to do the same for the standard errors or maximum values. <code>id</code> and <code>diagnosis</code> are separated from the rest of the columns we need! We can't specify all of these in one range.</p>
-<p>First, try creating the standard error dataframe on your own to see why doing this with just <code>loc</code> and <code>iloc</code> is an issue. Then, use this <a href="https://stackoverflow.com/questions/41256648/select-multiple-ranges-of-columns-in-pandas-dataframe">stackoverflow link</a> to learn how to select multiple ranges in Pandas and try it below. By the way, to figure this out myself, I just found this link by googling "how to select multiple ranges df.iloc"</p>
-<p><em>Hint: You may have to import a new package!</em></p>
 
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># create the standard errors dataframe</span>
-<span class="n">df_SE</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span><span class="mi">22</span><span class="p">]]</span>
-
-<span class="c1"># view the first few rows to confirm this was successful</span>
-<span class="n">df_SE</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for females</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">])])</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">]))</span>
 </pre></div>
 
 </div>
@@ -13838,118 +12009,416 @@ dtype: int64</pre>
 
 
 
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
 
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>diagnosis</th>
-      <th>radius_SE</th>
-      <th>texture_SE</th>
-      <th>perimeter_SE</th>
-      <th>area_SE</th>
-      <th>smoothness_SE</th>
-      <th>compactness_SE</th>
-      <th>concavity_SE</th>
-      <th>concave_points_SE</th>
-      <th>symmetry_SE</th>
-      <th>fractal_dimension_SE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>842302</td>
-      <td>M</td>
-      <td>1.0950</td>
-      <td>NaN</td>
-      <td>8.589</td>
-      <td>153.40</td>
-      <td>0.006399</td>
-      <td>0.04904</td>
-      <td>0.05373</td>
-      <td>0.01587</td>
-      <td>0.03003</td>
-      <td>0.006193</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>842517</td>
-      <td>M</td>
-      <td>0.5435</td>
-      <td>0.7339</td>
-      <td>3.398</td>
-      <td>74.08</td>
-      <td>0.005225</td>
-      <td>0.01308</td>
-      <td>0.01860</td>
-      <td>0.01340</td>
-      <td>0.01389</td>
-      <td>0.003532</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>84300903</td>
-      <td>M</td>
-      <td>0.7456</td>
-      <td>0.7869</td>
-      <td>4.585</td>
-      <td>94.03</td>
-      <td>0.006150</td>
-      <td>0.04006</td>
-      <td>0.03832</td>
-      <td>0.02058</td>
-      <td>0.02250</td>
-      <td>0.004571</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>84348301</td>
-      <td>M</td>
-      <td>0.4956</td>
-      <td>1.1560</td>
-      <td>3.445</td>
-      <td>27.23</td>
-      <td>NaN</td>
-      <td>0.07458</td>
-      <td>0.05661</td>
-      <td>0.01867</td>
-      <td>0.05963</td>
-      <td>0.009208</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>84358402</td>
-      <td>M</td>
-      <td>0.7572</td>
-      <td>0.7813</td>
-      <td>5.438</td>
-      <td>94.44</td>
-      <td>0.011490</td>
-      <td>0.02461</td>
-      <td>0.05688</td>
-      <td>0.01885</td>
-      <td>0.01756</td>
-      <td>0.005115</td>
-    </tr>
-  </tbody>
-</table>
+<div class="output_text output_subarea output_execute_result">
+<pre>0.28793774319066145</pre>
 </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for males</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">])])</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.48559670781893005</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Proportion-and-admission-rate-for-physics-majors-of-each-gender">Proportion and admission rate for physics majors of each gender<a class="anchor-link" href="#Proportion-and-admission-rate-for-physics-majors-of-each-gender">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># What proportion of female students are majoring in physics?</span>
+<span class="n">fem_phys_rate</span> <span class="o">=</span> <span class="n">admits</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;gender == &#39;female&#39; &amp; major == &#39;Physics&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">/</span> \
+    <span class="p">(</span><span class="n">admits</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;gender == &#39;female&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">fem_phys_rate</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>student_id    0.120623
+gender        0.120623
+major         0.120623
+admitted      0.120623
+dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># What proportion of male students are majoring in physics?</span>
+<span class="n">fem_phys_rate</span> <span class="o">=</span> <span class="n">admits</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;gender == &#39;male&#39; &amp; major == &#39;Physics&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">/</span> \
+    <span class="p">(</span><span class="n">admits</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;gender == &#39;male&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">fem_phys_rate</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>student_id    0.925926
+gender        0.925926
+major         0.925926
+admitted      0.925926
+dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for female physics majors</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s2">&quot;admitted&quot;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[26]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.7419354838709677</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for male physics majors</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s2">&quot;admitted&quot;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;gender&quot;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s2">&quot;major&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.5155555555555555</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Proportion-and-admission-rate-for-chemistry-majors-of-each-gender">Proportion and admission rate for chemistry majors of each gender<a class="anchor-link" href="#Proportion-and-admission-rate-for-chemistry-majors-of-each-gender">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># What proportion of female students are majoring in chemistry?</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8793774319066148</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># What proportion of male students are majoring in chemistry?</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.07407407407407407</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for female chemistry majors</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;female&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.22566371681415928</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for male chemistry majors</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;gender&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;male&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.1111111111111111</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Admission-rate-for-each-major">Admission rate for each major<a class="anchor-link" href="#Admission-rate-for-each-major">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for physics majors</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Physics&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[32]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.54296875</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Admission rate for chemistry majors</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">admits</span><span class="p">[</span><span class="s1">&#39;admitted&#39;</span><span class="p">]])</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">admits</span><span class="p">[(</span><span class="n">admits</span><span class="p">[</span><span class="s1">&#39;major&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chemistry&#39;</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[33]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.21721311475409835</pre>
 </div>
 
 </div>
