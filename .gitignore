@@ -1,2 +1,5 @@
 *.pptx
 *.csv
+
+*/archive/
+*/node_modules/

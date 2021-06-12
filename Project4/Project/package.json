@@ -1,5 +1,0 @@
-{
-  "dependencies": {
-    "@jupyterlab/toc-extension": "^5.0.10"
-  }
-}
