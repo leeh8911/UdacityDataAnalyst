@@ -1,5 +1,6 @@
 *.pptx
 *.csv
+*.zip
 
 */archive/
 */node_modules/
